@@ -28,6 +28,8 @@ helm fetch --untar stable/grafana
     ```
 3. Next, replace the contents of __main__.py file with the following code.
 ```
+"""A Kubernetes Python Pulumi program"""
+import pulumi
 from pulumi_kubernetes.helm.v3 import Chart, LocalChartOpts
 
 grafana = Chart(
@@ -36,6 +38,9 @@ grafana = Chart(
         path="grafana",
     ),
 )
+
+frontend = grafana.get_resource('v1/Service', 'default/grafana')
+pulumi.export('LoadBalancer_url', frontend.status.load_balancer.ingress[0].hostname)
 
 ```
 
