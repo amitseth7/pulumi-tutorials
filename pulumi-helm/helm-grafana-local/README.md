@@ -26,7 +26,7 @@ helm fetch --untar stable/grafana
     pulumi new kubernetes-python --force
     
     ```
-3. Next, replace the contents of __main__.py file with the following code.
+3. Next, replace the contents of ```__main__.py``` file with the following code.
 ```
 """A Kubernetes Python Pulumi program"""
 import pulumi
